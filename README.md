@@ -222,19 +222,22 @@ supported_boards = {
 `.sof` desteği sonradan yapılacak
 yukarıdaki parentez içindeki elemanlardan şuan sadece led ve serail desteklenmektedir. Diğer istenilen eleman destekleri için `litex-boards.litex_boards.targets.<your_boards>` düzenlenmesi gerekmektedir.
 
+Yandaki linkten linux için olan indirilip `/images` klasörü içerisine atılmalıdır.
+https://github.com/litex-hub/linux-on-litex-vexriscv/issues/164
+
 Once installed, build the bitstream with:
 ```
-./make.py --board=XXYY --cpu-count=X --build
+./make.py --board=terasic_de2_115 --cpu-count=1 --build
 ```
 
 later load:
 ```
-./make.py --board=XXYY --cpu-count=X --load
+./make.py --board=terasic_de2_115 --cpu-count=1 --load
 ```
 
 hangi serialin bağlı olduğuna bakmak için `lsusb` komutu kullanılmalı. Kullanılan usb port ile:
 ```
-sudo chmod 777 /dev/ttyUSB0
-sudo litex_term --images=images/boot.json /dev/ttyUSB0
+sudo chmod 777 /dev/ttyUSBX
+sudo litex_term --images=images/boot.json /dev/ttyUSBX
 ```
 
