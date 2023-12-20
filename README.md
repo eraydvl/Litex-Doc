@@ -44,7 +44,7 @@ export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubun
 ```
 After the above steps, the final version of the directory is as shown in the picture below:
 
-![LiteX located image](https://github.com/tredg/Litex-Doc/blob/main/Screenshots/litex_located.png)
+![LiteX located image](https://github.com/tredg/Litex-Doc/blob/main/litex_located.png)
 ## LiteX Build Command
 Build commands that can be used:
 ```
@@ -201,7 +201,7 @@ sudo make install
 ```
 After the above steps, the final version of the directory is as shown in the picture below:
 
-![OpenOCD located image](https://github.com/tredg/Litex-Doc/blob/main/Screenshots/litex_located.png)
+![OpenOCD located image](https://github.com/tredg/Litex-Doc/blob/main/openOCD.png)
 
 ## Running on Hardware
 If the board you have is not supported by the `./make.py` file, you can add your own `--boards` argument according to the specifications you built your board with. 
@@ -257,6 +257,8 @@ litex_term --images=images/boot.json /dev/ttyUSBX
 ```
 If all of the above steps have been completed successfully, the final screenshot should look something like the following picture
 
-![litex_term located image](https://github.com/tredg/Litex-Doc/blob/main/Screenshots/litex_located.png)
+![litex_term located image](https://github.com/tredg/Litex-Doc/blob/main/litex_vexriscv.png)
 
 In the screen that appears, the `serialboot` command should be used to initialize the boot file we installed.
+
+![linux located image](https://github.com/tredg/Litex-Doc/blob/main/linux_located.png)
