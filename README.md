@@ -21,7 +21,6 @@
 |OpenOCD|0.12.0|
 |SBT|1.9.8|
 |java-jdk|openjdk-8-jdk|
-|||
 
 </details>
 
