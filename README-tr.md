@@ -4,12 +4,12 @@
 [Türkçe](README-tr.md)
 
 <details>
-<summary>Dependencies</summary>
+<summary>Bağımlılıklar</summary>
 
-## Dependencies
-|Tools|Version|
+## Bağımlılıklar
+|Araçlar|Sürüm|
 |:---|:---|
-|OS|Ubuntu 22.04|
+|İşletim sistemi|Ubuntu 22.04
 |git|2.34.1|
 |Python|3.10.12|
 |quartus|Quartus (Quartus Prime 22.1std) Lite Edition|
@@ -21,60 +21,63 @@
 |OpenOCD|0.12.0|
 |SBT|1.9.8|
 |java-jdk|openjdk-8-jdk|
-|||
 
 </details>
 
-## LiteX Setup
-After `mkdir LiteX` in the directory where you want to install it, use the `cd LiteX` command and perform the following steps.
-1. Install Python 3.6+ and FPGA vendor's development tools
-2. Instal Migen and LLiteX and the Litex's cores:
-It must be located in the LiteX directory.
+## LiteX Kurulumu
+LiteXi kurmak istediğiniz dizine `mkdir LiteX` komutunu verdikten sonra `cd LiteX` komutunu kullanın ve aşağıdaki adımları uygulayın.
+1. Python 3.6+ ve FPGA tedarikçisinin geliştirme araçlarını yükleyin
+2. Migen ve LLiteX'i ve Litex'in çekirdeklerini yükleyin:
+LiteX dizininde bulunulmalıdır.
 ```
 wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
 chmod +x litex_setup.py
 ./litex_setup.py --init --install --user
 ```
-Update Litex:
-
-Sometimes use update command. It must be located in the LiteX directory. 
+> Litex'i güncelleyin:`update` komutunu kullanın. LiteX dizininde bulunulmalıdır. 
 ```
 sudo ./litex_setup.py --update
 ```
-3. Install a RISC-V toolchain:
-Only if you want to test/create a SoC with a CPU, It must be located in the LiteX directory.
+
+3. Bir RISC-V araç zinciri yükleyin:
+
+    Yalnızca bir CPU ile bir SoC test etmek/oluşturmak istiyorsanız, LiteX dizininde bulunulmalıdır.
 ```
 pip3 install meson ninja
 ./litex_setup.py --gcc=riscv
 ```
-4. Build the target of your board:
-Below is the command to be typed
-It must be located in the LiteX directory. It must be located in the LiteX directory. If not, you need to edit `litex-boards.litex_boards.targets.<your_boards> `.
+
+4. Kartınızın hedefini oluşturun:
+
+    Yazılması gereken komut aşağıdadır, LiteX dizininde bulunulmalıdır. Eğer değilse, `litex-boards.litex_boards.targets.<your_boards>` dosyasını düzenlemeniz gerekir.
 ```
 python3 -m litex-boards.litex_boards.targets.<your_boards> --build
 ```
-5. Test LiteX directly on your computer without any FPGA board:
-The code for downloading the file structures required for testing is provided.
+5. LiteX'i herhangi bir FPGA kartı olmadan doğrudan bilgisayarınızda test edin:
 
-The other code is the code required to start the simulation and information about which processor will be used. It must be located in the LiteX directory.
+    Test için gerekli dosya yapılarını indirmek için kod sağlanmıştır.
+
+    Diğer kod ise simülasyonu başlatmak için gerekli kod ve hangi işlemcinin kullanılacağı ile ilgili bilgilerdir. LiteX dizininde bulunulmalıdır.
 ```
 sudo apt install libevent-dev libjson-c-dev verilator
 litex_sim --cpu-type=vexriscv
 ```
+
 6. RISC-V toolchain:
 ```
 wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
 tar -xvf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
 export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
 ```
-After the above steps, the final version of the directory is as shown in the picture below:
+Yukarıdaki adımlardan sonra dizinin son hali aşağıdaki resimde gösterildiği gibidir:
 
 ![LiteX located image](https://github.com/eraydvl/Litex-Doc/blob/main/litex_located.png)
 
 <details>
-<summary>LiteX Build Command</summary>
+<summary>LiteX İnşa Komutları</summary>
 
-Build commands that can be used:
+İnşa etmek için kullanılabilecek komutlar:
+
 ```
 Target options:
   --toolchain {quartus}
@@ -211,15 +214,16 @@ SoC options:
 
 </details>
 
-## LiteX Simulator
-We need setup for simulation area:
+## LiteX Simülasyon
+Bize simülasyon için alan gerekli:
 ```
 sudo apt install verilator
 sudo apt install libevent-dev libjson-c-dev
 ```
 
-## Setup OpenOCD
-only needed for hardware test:
+## OpenOCD Kurulumu
+
+Donanım üzerinde test için gereksinimler:
 ```
 sudo apt install libtool automake pkg-config libusb-1.0-0-dev
 git clone https://github.com/ntfreak/openocd.git
@@ -229,14 +233,15 @@ cd openocd
 make
 sudo make install
 ```
-After the above steps, the final version of the directory is as shown in the picture below:
+Yukarıdaki adımlar bittikten sonra dosyanın genel görüntüsü aşağıdaki resim gibi olmalıdır:
 
 ![OpenOCD located image](https://github.com/eraydvl/Litex-Doc/blob/main/images/openOCD.png)
 
-## Running on Hardware
-If the board you have is not supported by the `./make.py` file, you can add your own `--boards` argument according to the specifications you built your board with. 
+## Donanım Üzerinde Çalışma
+Sahip olduğunuz kart `./make.py` dosyası tarafından desteklenmiyorsa, kartınızı oluşturduğunuz özelliklere göre kendi `--boards` argümanınızı ekleyebilirsiniz. 
 
-Since there is no support for the Terasic DE2 115 board I have, I added the following commands in the `./make.py` file.
+Elimdeki Terasic DE2 115 kartı için destek olmadığı için `./make.py` dosyasına aşağıdaki komutları ekledim.
+
 ```
 # DE2-115 support ----------------------------------------------------------------------------------
 class terasic_de2_115(Board):
@@ -255,6 +260,7 @@ class terasic_de2_115(Board):
             #"framebuffer"
         })#, bitstream_ext=".sof"
 ```
+
 ```
 supported_boards = {
      # Altera/Intel
@@ -264,31 +270,35 @@ supported_boards = {
      "qmtech_ep4ce15":  Qmtech_EP4CE15,
  }
 ```
-`.sof` support will be done later.
-Of the elements in the parentheses above, only led and serail are currently supported. For other desired element supports, `litex-boards.litex_boards.targets.<your_boards>` needs to be edited.
 
-The one for linux should be downloaded from the link on the side and put into the `/images` folder.
+`.sof` desteği daha sonra yapılacaktır.
+
+Yukarıdaki parantez içindeki elemanlardan şu anda sadece led ve seri iletişim desteklenmektedir. Diğer istenen eleman destekleri için `litex-boards.litex_boards.targets.<your_boards>` dosyasının düzenlenmesi gerekiyor.
+
+Linux için olanı yandaki linkten indirip `/images` klasörüne atılmalıdır.
 https://github.com/litex-hub/linux-on-litex-vexriscv/issues/164
 
-If all of the above steps have been successfully completed, the following steps should be taken to build and install the software that will run on the hardware.
-Build the bitstream with:
+Yukarıdaki adımların tümü başarıyla tamamlandıysa, donanım üzerinde çalışacak yazılımı oluşturmak ve kurmak için aşağıdaki adımlar izlenmelidir.
+İle bit akışını oluşturun:
+
 ```
 ./make.py --board=terasic_de2_115 --cpu-count=1 --build
 ```
-If build successfully completed,later load:
+Eğer inşa başarıyla sonuçlandıysa aşağıdaki komutu kullanın: 
 ```
 ./make.py --board=terasic_de2_115 --cpu-count=1 --load
 ```
 
-use the `lsusb` command to see which serial is connected. With the usb port used:
+Hangi serinin bağlı olduğunu görmek için `lsusb` komutunu kullanın. Kullanılan usb portu ile:
 ```
 sudo chmod 777 /dev/ttyUSBX
 litex_term --images=images/boot.json /dev/ttyUSBX
 ```
-If all of the above steps have been completed successfully, the final screenshot should look something like the following picture
+
+Yukarıdaki adımların tümü başarıyla tamamlandıysa, son ekran görüntüsü aşağıdaki resimdeki gibi görünmelidir:
 
 ![litex_term located image](https://github.com/eraydvl/Litex-Doc/blob/main/images/litex_vexriscv.png)
 
-In the screen that appears, the `serialboot` command should be used to initialize the boot file we installed.
+Karşımıza çıkan ekranda `serialboot` komutunu kullanarak yüklediğimiz boot dosyasını başlatmalıyız.
 
 ![linux located image](https://github.com/eraydvl/Litex-Doc/blob/main/images/linux_located.png)
