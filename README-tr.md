@@ -71,7 +71,7 @@ export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubun
 ```
 Yukarıdaki adımlardan sonra dizinin son hali aşağıdaki resimde gösterildiği gibidir:
 
-![LiteX located image](https://github.com/eraydvl/Litex-Doc/blob/main/litex_located.png)
+![LiteX located image](https://github.com/eraydvl/Litex-Doc/blob/main/images/litex_located.png)
 
 <details>
 <summary>LiteX İnşa Komutları</summary>
