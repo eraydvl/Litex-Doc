@@ -69,7 +69,7 @@ export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubun
 ```
 After the above steps, the final version of the directory is as shown in the picture below:
 
-![LiteX located image](https://github.com/eraydvl/Litex-Doc/blob/main/litex_located.png)
+![LiteX located image](https://github.com/eraydvl/Litex-Doc/blob/main/images/litex_located.png)
 
 <details>
 <summary>LiteX Build Command</summary>
